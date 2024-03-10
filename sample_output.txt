@@ -1,0 +1,78 @@
+
+#-------------------------------------
+# debian v5 dpkg
+#-------------------------------------
+
+basic system configuration:
+     os        = Debian GNU/Linux 12 (bookworm)
+     arch      = arm64
+
+looking for weewx installations
+     /home/weewx:         false
+     /home/pi/weewx-venv: false
+     /etc/weewx:          true
+
+installed weewx package:
+     weewx_pkg = 5.0.2-1
+
+running weewx processes:
+python3 /usr/share/weewx/weewxd.py /etc/weewx/weewx.conf
+
+#-------------------------------------
+# debian v5 pip multi with rsyslogd
+#-------------------------------------
+
+basic system configuration:
+     os        = Raspbian GNU/Linux 11 (bullseye)
+     arch      = armhf
+
+looking for weewx installations
+     /home/weewx:         false
+     /home/pi/weewx-venv: true
+     /etc/weewx:          false
+
+installed weewx package:
+     weewx_pkg = no_pkg_installed
+
+running weewx processes:
+/home/pi/weewx-venv/bin/python3 /home/pi/weewx-venv/lib/python3.9/site-packages/weewxd.py --log-label weewxd-ecowitt /home/pi/weewx-data/ecowitt.conf
+/home/pi/weewx-venv/bin/python3 /home/pi/weewx-venv/lib/python3.9/site-packages/weewxd.py --log-label weewxd-vp2 /home/pi/weewx-data/vp2.conf
+
+#-------------------------------------
+# alma with rpm installed
+#-------------------------------------
+
+basic system configuration:
+     os        = AlmaLinux 9.3 (Shamrock Pampas Cat)
+     arch      = x86_64
+
+looking for weewx installations
+     /home/weewx:         false
+     /home/pi/weewx-venv: false
+     /etc/weewx:          true
+
+installed weewx package:
+     weewx_pkg = weewx-5.0.2-1.el9.noarch
+
+running weewx processes:
+python3 /usr/share/weewx/weewxd.py /etc/weewx/weewx.conf
+
+#-------------------------------------
+# ubuntu with nothing installed yet
+#-------------------------------------
+
+basic system configuration:
+     os        = Ubuntu 22.04.4 LTS
+     arch      = amd64
+
+looking for weewx installations
+     /home/weewx:         false
+     /home/pi/weewx-venv: false
+     /etc/weewx:          false
+
+installed weewx package:
+     weewx_pkg = no_pkg_installed
+
+running weewx processes:
+     none
+

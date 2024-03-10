@@ -1,0 +1,8 @@
+
+This is a quick bash script to do minimal querying of the os and weewx installation.
+
+To run:
+     wget -qO - this_url | bash
+
+If piping to bash worries you from a security standpoint, examine the code please.
+
