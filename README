@@ -1,8 +1,11 @@
 
 This is a quick bash script to do minimal querying of the os and weewx installation.
 
+Prerequisites:
+     you will need to install 'wget' on your system
+
 To run:
-     wget -qO - this_url | bash
+     wget -qO - https://raw.githubusercontent.com/vinceskahan/weewx-quickconfig/main/quickconfig.bash | bash
 
 If piping to bash worries you from a security standpoint, examine the code please.
 
