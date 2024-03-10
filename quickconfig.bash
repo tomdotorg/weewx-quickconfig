@@ -27,23 +27,22 @@ fi
 
 if [ "x${DPKG_PRESENT}" != "x" ]
 then
-  #------- debian systems -------------
-  VERSION=`cat /etc/debian_version`
+  # debian systems
+
+  # supersede the 'arch' command because on a pi it reports
+  # the wrong thing, but dpkg knows reality
   ARCH=`dpkg --print-architecture`
 
-  # debianish
+  VERSION=`cat /etc/debian_version`
+
   INSTALLED_WEEWX_PKG=`dpkg -l | grep weewx | awk '{print $3}'`
   if [ "x${INSTALLED_WEEWX_PKG}" = "x" ]
   then
     INSTALLED_WEEWX_PKG="no_pkg_installed"
   fi
 
-  # supersede the 'arch' command because on a pi it reports
-  # the wrong thing, but dpkg knows reality
-  ARCH=`dpkg --print-architecture`
-
 else
-  #------- redhat systems -------------
+  # redhat systems
   INSTALLED_WEEWX_PKG=`rpm -q weewx`
   if [ "x${INSTALLED_WEEWX_PKG}" = "x" ]
   then
@@ -51,15 +50,9 @@ else
   fi
 fi
 
-RUNNING_WEEWX_PROCESSES=`ps -eo cmd | grep weewxd | grep -v grep`
-if [ "x${RUNNING_WEEWX_PROCESSES}" = "x" ]
-then
-  RUNNING_WEEWX_PROCESSES="     none"
-fi
-
 #-----------------------------------------
-
 # look for weewx in a few likely places
+#-----------------------------------------
 if [ -d /home/weewx ]
 then
   HOME_WEEWX_EXISTS="true"
@@ -100,17 +93,15 @@ echo "installed weewx package:"
 echo "     weewx_pkg = ${INSTALLED_WEEWX_PKG}"
 echo ""
 
+# this attempts to grab the version from the code
+# this is a little ugly since there might be multiple python installations
+# and varying weewx versions therein, so do some ugly output for those cases
 if [ ${HOME_PI_VENV_EXISTS} ]
 then
   echo "installed weewx pip version:"
 
-  # this attempts to grab the version from the code
-  #
-  # this is a little ugly since there might be multiple python installations
-  # and varying weewx versions therein, so do some ugly output for those cases
   WEEWX_INIT_FILES=`find /home/pi/weewx-venv/lib/python*/site-packages/weewx/__init__.py -type f -print`
   WEEWX_INIT_FILES_COUNT=`find /home/pi/weewx-venv/lib/python*/site-packages/weewx/__init__.py -type f -print | wc -l`
-  #WEEWX_INIT_FILES_COUNT=`echo ${WEEWX_INIT_FILES} | wc -l`
   if [ "x${WEEWX_INIT_FILES_COUNT}" != "x1" ]
   then
    for f in ${WEEWX_INIT_FILES}
@@ -129,6 +120,14 @@ then
 fi
 else
   HOME_PI_VENV_EXISTS="false"
+fi
+
+#-----------------------------------------
+
+RUNNING_WEEWX_PROCESSES=`ps -eo cmd | grep weewxd | grep -v grep`
+if [ "x${RUNNING_WEEWX_PROCESSES}" = "x" ]
+then
+  RUNNING_WEEWX_PROCESSES="     none"
 fi
 
 echo ""
