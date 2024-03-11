@@ -80,7 +80,6 @@ running weewx processes:
 # FreeBSD v5 pip running under vagrant
 #-------------------------------------
 
-
 basic system configuration:
      os        = FreeBSD 14.0-STABLE
      arch      = amd64
@@ -99,5 +98,27 @@ installed weewx pip version:
 
 running weewx processes:
 /home/vagrant/weewx-venv/bin/python3.9 /home/vagrant/weewx-venv/lib/python3.9/site-packages/weewxd.py --daemon --pidfile=/home/vagrant/weewx-data/weewx.pid /home/vagrant/weewx-data/weewx.conf
+
+#-------------------------------------
+# pi v4 pip dpkg
+#-------------------------------------
+
+basic system configuration:
+     os        = Debian GNU/Linux 12 (bookworm)
+     arch      = arm64
+
+looking for weewx installations
+     /home/weewx:         false
+     /etc/weewx:          true
+     /home/pi/weewx-venv: false
+
+installed weewx package:
+     weewx_pkg = 4.10.2-1
+
+installed weewx pip version:
+     version   = (none installed)
+
+running weewx processes:
+python3 /usr/share/weewx/weewxd --daemon --pidfile=/var/run/weewx.pid /etc/weewx/weewx.conf
 
 
