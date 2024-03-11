@@ -122,3 +122,24 @@ running weewx processes:
 python3 /usr/share/weewx/weewxd --daemon --pidfile=/var/run/weewx.pid /etc/weewx/weewx.conf
 
 
+#-------------------------------------
+# ubuntu v4 setup.py
+#-------------------------------------
+
+basic system configuration:
+     os        = Ubuntu 22.04.4 LTS
+     arch      = amd64
+
+looking for weewx installations
+     /home/weewx:         true
+     /etc/weewx:          false
+
+installed weewx package:
+     weewx_pkg = no_pkg_installed
+
+installed weewx pip version:
+     version   = (none installed)
+
+running weewx processes:
+/usr/bin/python3 /home/weewx/bin/weewxd /home/weewx/weewx.conf
+
