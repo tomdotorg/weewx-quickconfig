@@ -90,6 +90,7 @@ then
   FOUNDUSER="vagrant"
 else
   HOME_VENV_EXISTS="false"
+  FOUNDUSER=""
 fi
 
 # TODO: this could even output JSON if needed
@@ -105,7 +106,10 @@ echo ""
 echo "looking for weewx installations"
 echo "     /home/weewx:         ${HOME_WEEWX_EXISTS}"
 echo "     /etc/weewx:          ${ETC_WEEWX_EXISTS}"
-echo "     /home/${FOUNDUSER}/weewx-venv: ${HOME_VENV_EXISTS}"
+if [ "x${FOUNDUSER}" != "" ]
+then
+  echo "     /home/${FOUNDUSER}/weewx-venv: ${HOME_VENV_EXISTS}"
+fi
 echo ""
 echo "installed weewx package:"
 echo "     weewx_pkg = ${INSTALLED_WEEWX_PKG}"
